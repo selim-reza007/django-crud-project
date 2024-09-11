@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Blog Details
+{% endblock title %}
+
+{% block content %}
+    <h2>Details of Blog</h2>
+    <img src="{{ blog.banner.url }}" alt="Pic">
+    <p>{{ blog }}</p>
+    <p>{{ blog.date }}</p>
+    <p>{{ blog.author }}</p>
+    <p>{{ blog.content }}</p>
+{% endblock content %}

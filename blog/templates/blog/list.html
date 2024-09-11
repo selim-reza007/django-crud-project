@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Blog list
+{% endblock title %}
+
+{% block content %}
+    <h2>List of available blogs:</h2>
+    {% if blogs %}
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Published at</th>
+            <th>Actions</th>
+        </tr>
+        {% for blog in blogs %}
+            <tr>
+                <td>
+                    <a href="{% url 'blog:page' slug=blog.id %}">{{ blog.title }}</a>
+                </td>
+                <td>{{ blog.author }}</td>
+                <td>{{ blog.date }}</td>
+                <td>
+                    <a href="{% url 'blog:edit' slug=blog.id %}">Edit</a>
+                    <form action="{% url 'blog:delete' slug=blog.id %}" method="post">
+                        {% csrf_token %}
+                        <button>Delete</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <h2>No Data!</h2>
+    {% endif %}
+    
+{% endblock content %}
